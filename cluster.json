@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "vmSize": "Standard_NC6",
+    "vmPriority": "dedicated",
+    "scaleSettings": {
+      "autoScale": {
+        "minimumNodeCount": "2",
+        "maximumNodeCount": "2"
+      }
+    },
+    "virtualMachineConfiguration": {
+      "publisher": "Canonical",
+      "offer": "UbuntuServer",
+      "sku": "16.04.0-LTS"
+    },
+    "nodeSetup": {
+      "mountVolumes": {
+        "azureFileShares": [{
+          "accountName": "<file share account name>",
+          "azureFileUrl": "https://<file share account name>.file.core.windows.net/<file share name>",
+          "credentials": {
+            "accountKey": "<storage account key>"
+          },
+          "relativeMountPath": "external"
+        }]
+      }
+    },
+    "userAccountSettings": {
+      "adminUserName": "<admin username>",
+      "adminUserSshPublicKey": "<base64 encoded RSA key>",
+      "adminUserPassword": "<password>"
+    }
+ }
+}

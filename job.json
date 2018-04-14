@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/BatchAI/master/schemas/2017-09-01-preview/job.json",
+  "properties": {
+      "nodeCount": 2,
+      "customToolkitSettings": {
+          "commandLine": "cd /darknet && ./darknet detect $AZ_BATCHAI_INPUT_SCRIPT/cfg/yolov3.cfg $AZ_BATCHAI_INPUT_SCRIPT/yolov3.weights $AZ_BATCHAI_INPUT_SCRIPT/data/dog.jpg"
+      },
+      "stdOutErrPathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/external",
+      "inputDirectories": [{
+          "id": "SCRIPT",
+          "path": "$AZ_BATCHAI_MOUNT_ROOT/external/yolo"
+      }],
+      "outputDirectories": [{
+          "id": "MODEL",
+          "pathPrefix": "$AZ_BATCHAI_MOUNT_ROOT/external",
+          "pathSuffix": "Models"
+      }],
+      "containerSettings": {
+          "imageSourceRegistry": {
+              "image": "smarker/yolo-darknet"
+          }
+      }
+  }
+}
