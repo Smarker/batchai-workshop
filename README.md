@@ -16,6 +16,47 @@ nodes.
 
 ![image](https://user-images.githubusercontent.com/7232635/38520388-aed7b5ec-3c10-11e8-84e2-39a0d1a17f81.png)
 
+## YOLO
+
+`You Only Look Once (YOLO)` is a real-time object detection system. We will be
+running `YOLOv3` on a single image with BatchAI. If you would like to run YOLO
+without a cluster you can follow the steps on the
+[YOLO site](https://pjreddie.com/darknet/yolo/).
+
+### Make the project
+
+```sh
+git clone https://github.com/pjreddie/darknet
+cd darknet
+make
+```
+
+### Download the weights
+
+```sh
+wget https://pjreddie.com/media/files/yolov3.weights
+```
+
+### Run YOLO
+
+```sh
+./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+```
+
+YOLOv3 should output something like:
+
+```sh
+  ...
+  104 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256  1.595 BFLOPs
+  105 conv    255  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 255  0.353 BFLOPs
+  106 detection
+Loading weights from cfg/yolov3.weights...Done!
+data/dog.jpg: Predicted in 24.016015 seconds.
+dog: 99%
+truck: 92%
+bicycle: 99%
+```
+
 ## Parallelizing Batch AI jobs
 
 * Python train and test scripts define the `parallel strategy` used, **not Batch AI**.
