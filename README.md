@@ -112,6 +112,15 @@ az storage account create \
   -g <rg name>
 ```
 
+### Get storage account key
+
+```sh
+az storage account keys list \
+  -n <storage account name> \
+  -g <rg name> \
+  --query "[0].value"
+```
+
 ## Create a file share
 
 ```sh
@@ -119,15 +128,6 @@ az storage share create \
   -n <share name> \
   --account-name <storage account name> \
   --account-key <storage account key>
-```
-
-### Get storage account key of file share
-
-```sh
-az storage account keys list \
-  -n <storage account name> \
-  -g <rg name> \
-  --query "[0].value"
 ```
 
 ## Create a directory in your file share to hold python scripts
@@ -205,7 +205,7 @@ az batchai cluster show \
 * View `JobBaseProperties` in the [batch ai swagger docs](https://editor.swagger.io//?_ga=2.103282566.745803966.1523299917-1903704715.1523299917#/) for the possible parameters to use in `job.json`.
 
 ```sh
-az batch ai job create \
+az batchai job create \
   -g <rg name> \
   -l eastus \
   -n <job name> \
